@@ -1,35 +1,34 @@
-const fs = require("fs");
+const { readFile, writeFile } = require("fs").promises;
 const path = require("path");
 
 const contactsPath = path.relative(__dirname, "db/contacts.json");
 console.log(contactsPath);
 
-// function listContacts() {
-//   let list = fs.readFileSync(contactsPath);
-//   let data = JSON.parse(list);
-//   console.table(data);
-// }
-
-function getContactById(contactId) {
-  let list = fs.readFileSync(contactsPath);
-  let data = JSON.parse(list);
-  for (let value of data) {
-    if (Number(value.id) === contactId) {
-      console.log("b", value.id);
-      console.log(value);
-      return value;
-    }
-  }
-  console.log("You are wrong");
+async function listContacts() {
+  const data = await readFile(contactsPath, "utf-8");
+  return JSON.parse(data);
 }
 
-getContactById(2);
+async function getContactById(contactId) {
+  const data = await listContacts();
+  const object = data.find((value) => value.id === contactId.toString());
+  console.log(object);
+  return object;
+}
 
-// function removeContact(contactId) {
-//   // ...твой код
-// }
+async function removeContact(contactId) {
+  const data = await listContacts();
+  const newArray = data.filter((value) => value.id !== contactId.toString());
+  await writeFile(contactsPath, JSON.stringify(newArray));
+  console.table(newArray);
+  return newArray;
+}
 
 // function addContact(name, email, phone) {
 //   // ...твой код
 // }
-// module.exports = listContacts;
+module.exports = {
+  listContacts,
+  getContactById,
+  removeContact,
+};

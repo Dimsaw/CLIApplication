@@ -1,6 +1,8 @@
-const dataList = require("./contacts");
+const { listContacts, getContactById, removeContact } = require("./contacts");
 
-dataList();
+listContacts();
+getContactById(5);
+removeContact(11);
 
 // const { Command } = require("commander");
 // const program = new Command();
