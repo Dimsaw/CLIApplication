@@ -13,8 +13,10 @@ async function listContacts() {
 async function getContactById(contactId) {
   const data = await listContacts();
   for (let value of data) {
-    if (value.id === contactId.toString()) console.log(value);
-    return value;
+    if (value.id === contactId.toString()) {
+      console.log(value);
+      return value;
+    }
   }
   throw new Error(`Contact with id: ${contactId} not found. Try different id.`);
 }
@@ -25,7 +27,6 @@ async function removeContact(contactId) {
   if (data.some((value) => value.id === contactId.toString())) {
     const newArray = data.filter((value) => value.id !== contactId.toString());
     await writeFile(contactsPath, JSON.stringify(newArray));
-    console.table(newArray);
     return newArray;
   }
   throw new Error(`Contact with id: ${contactId} not found. Try different id.`);
@@ -39,7 +40,6 @@ async function addContact(name, email, phone) {
   const data = await listContacts();
   let newArray = data.concat({ id, name, email, phone });
   await writeFile(contactsPath, JSON.stringify(newArray));
-  console.table(newArray);
   return newArray;
 }
 module.exports = {

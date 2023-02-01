@@ -1,18 +1,21 @@
 {
   "name": "homework1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node.js",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "start:dev": "nodemon index"
-  },
-  "author": "",
+  "author": "Savkov Dmitriy",
+  "homepage": "https://github.com/Dimsaw/CLIApplication",
   "license": "ISC",
   "dependencies": {
     "commander": "^10.0.0",
-    "nodemon": "^2.0.20",
     "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "start:dev": "nodemon index"
   }
 }
