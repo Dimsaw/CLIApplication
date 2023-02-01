@@ -1,8 +1,14 @@
-const { listContacts, getContactById, removeContact } = require("./contacts");
+const {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+} = require("./contacts");
 
 listContacts();
 getContactById(5);
-removeContact(11);
+removeContact(3);
+addContact("mango", "mango@gmail.com", "322 - 22 - 22");
 
 // const { Command } = require("commander");
 // const program = new Command();
