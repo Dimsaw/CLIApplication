@@ -35,7 +35,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         const contact = await getContactById(id);
         console.log("Contact found:", contact);
       } catch (error) {
-        console.error("We have problem, try it later again");
+        console.error(error.message);
       }
       break;
 
@@ -45,7 +45,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         console.log(`We add new contact with name: ${name}`);
         console.table(newContact);
       } catch (error) {
-        console.error("We have problem, try it later again and again");
+        console.error(error.message);
       }
       break;
 
@@ -55,7 +55,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         console.log(`We delete contact with id: ${id}`);
         console.table(contacts);
       } catch (error) {
-        console.error("We have problem, try it later again and again");
+        console.error(error.message);
       }
       break;
 
