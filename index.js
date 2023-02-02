@@ -32,19 +32,32 @@ async function invokeAction({ action, id, name, email, phone }) {
 
     case "get":
       try {
-        await getContactById(contactId);
+        const contact = await getContactById(id);
+        console.log("Contact found:", contact);
       } catch (error) {
-        console.error("We have problem, try it later");
+        console.error("We have problem, try it later again");
       }
       break;
 
-    // case "add":
-    //   // ... name email phone
-    //   break;
+    case "add":
+      try {
+        const newContact = await addContact(name, email, phone);
+        console.log(`We add new contact with name: ${name}`);
+        console.table(newContact);
+      } catch (error) {
+        console.error("We have problem, try it later again and again");
+      }
+      break;
 
-    // case "remove":
-    //   // ... id
-    //   break;
+    case "remove":
+      try {
+        const contacts = await removeContact(id);
+        console.log(`We delete contact with id: ${id}`);
+        console.table(contacts);
+      } catch (error) {
+        console.error("We have problem, try it later again and again");
+      }
+      break;
 
     default:
       console.warn("\x1B[31m Unknown action type!");
@@ -52,8 +65,3 @@ async function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
-
-// listContacts();
-// getContactById(5);
-// removeContact(3);
-// addContact("mango", "mango@gmail.com", "322 - 22 - 22");

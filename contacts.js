@@ -14,7 +14,6 @@ async function getContactById(contactId) {
   const data = await listContacts();
   for (let value of data) {
     if (value.id === contactId.toString()) {
-      console.log(value);
       return value;
     }
   }
